@@ -4,7 +4,7 @@ clear
 lw =1.3;
 fs = 12;
 
-AtlasList = {'Gordon','ICA200','Power','Yeo'};
+AtlasList = {'Gordon','ICA200','Power','Yeo','MMP'};
 
 Col = get(groot,'defaultAxesColorOrder');
 
@@ -14,8 +14,6 @@ for Atlas = AtlasList
     load(['/Users/sorooshafyouni/Home/BCF/BCFAnal/ROIsVSCorrLeng/R/HCP100UR/' Atlas{1} '_GSR_FPP_CorrLeng_ROIWise.mat'])
     
     [N,nSub] = size(ACL);
-
-    ACL = randn(size(ACL));
     
     Y = ACL'; 
     
@@ -44,6 +42,6 @@ fh.Children.XTickLabelRotation = 45;
 bh(1).FaceColor = Col(1,:);
 bh(2).FaceColor = Col(2,:);
 
-legend({'Inter-Sub','Inter-Node'},'FontSize',fs)
+legend({'Inter-Subject','Inter-Node'},'FontSize',fs)
 set(fh,'Color','w');
-export_fig(fh,'figs/ACprofiles.pdf')
+export_fig(fh,'Figs/ACprofiles.pdf')

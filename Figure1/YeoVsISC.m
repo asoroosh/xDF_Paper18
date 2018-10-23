@@ -8,6 +8,8 @@ lw = 1.3;
 
 xxlim=7;
 
+rightmxxlim = 50; 
+
 z = @(p) -sqrt(2) * erfcinv(p*2);
 alp=0.05;
 
@@ -39,7 +41,7 @@ load('/Users/sorooshafyouni/Home/BCF/BCFAnal/Sims/HetBivStressTest/FC135932/HCP_
 
 ph0 = figure('position',[50,500,1100,200]); 
 hold on; box on; grid on; 
-title('HCP118528 Left Dorsal Prefrontal Cortex (PCFd)','fontsize',fs);
+title('HCP118528 Left Dorsal Prefrontal Cortex (PFCd)','fontsize',fs);
 plot(timspan,AdjCUR,'linewidth',lw,'marker','.','color','k');
 %plot(CUR,'linewidth',lw,'marker','none','color',[.5 .5 .5 .5]);
 ylabel('Standardised BOLD Response','fontsize',fs,'interpreter','latex')
@@ -78,7 +80,7 @@ ac_strength = sum((ac_ts(:,1:round(T/9)).*AC_RWV(1:round(T/9))).^2,2);
 for i=1:114
     %[~,Stat]=PearCorrVarEst([ts(:,i),AdjCUR]',numel(AdjCUR),'taper','tukey',sqrt(T));
     
-    [~,Stat]=xDF([ts(:,i),AdjCUR]',numel(AdjCUR),'taper','shrink','TVOn');
+    [~,Stat]=xDF([ts(:,i),AdjCUR]',numel(AdjCUR),'truncate','adaptive','TVOn');
     
     %zstat(i) = Stat.z.rz(1,2);
     zMEfish(i) = Stat.z.rzf(1,2);
@@ -114,7 +116,7 @@ tnr_idx = sum(abs(znaive)<p2z & abs(zMEfish)<p2z)./114;
 fpr1_pidx = 85; 
 fpr2_pidx = 7;
 
-tpr1_pidx = 87;
+tpr1_pidx = 66; % 87
 tpr2_pidx = 37;
 
 r([fpr1_pidx,fpr2_pidx,tpr1_pidx,tpr2_pidx ]), 
@@ -192,7 +194,8 @@ line([0 T-1],-[bnd bnd])
 legend({'L-PFCd','L-SoMotCent'},'fontsize',fs,'location','southwest')
 ylabel('Autocorrelation','fontsize',fs,'interpreter','latex')
 xlabel('Lags','fontsize',fs,'interpreter','latex')
-xlim([0 T-1]/5)
+%xlim([0 T-1]/5)
+xlim([0 rightmxxlim])
 ylim([-1 1])
 
 %-----TPR1
@@ -223,10 +226,11 @@ line([0 T-1],[bnd bnd])
 line([0 T-1],-[bnd bnd])
 %HCP118528
 %HCP135932
-legend({'L-PFCd','R-Cinga'},'fontsize',fs,'location','southwest')
+legend({'L-PFCd','R-Insula'},'fontsize',fs,'location','southwest')
 ylabel('Autocorrelation','fontsize',fs,'interpreter','latex')
 xlabel('Lags','fontsize',fs,'interpreter','latex')
-xlim([0 T-1]/5)
+%xlim([0 T-1]/5)
+xlim([0 rightmxxlim])
 ylim([-1 1])
 
 
@@ -398,12 +402,13 @@ plot(timspan,ts1,'color',[Red 0.5],'linewidth',lw)
 plot(timspan,ts0,'color',[Blue 0.9],'linewidth',lw)
 set(BOLDResfh,'color','w')
 xlim([0 scanses])
-legend({'Right Anteriour Cingulate Sulcus (R-Cinga)','Left SomatoMotor Central (L-SomMot Cent)'},'fontsize',fs)
+legend({'Right Insula (R-Insula)','Left SomatoMotor Central (L-SomMot Cent)'},'fontsize',fs)
 ylabel('Standardised BOLD Response','fontsize',fs,'interpreter','latex')
 xlabel('Seconds','fontsize',fs,'interpreter','latex')
 %------------------------------
 % 
-% export_fig(examplesfh,'Figs/Examples.pdf') 
-% export_fig(ph0,'Figs/ph0.pdf') 
-% export_fig(scatterfh,'Figs/FisherPlot.pdf')
-% export_fig(BOLDResfh,'Figs/BOLDRes.pdf')
+ 
+export_fig(examplesfh,'Figs/Examples.pdf') 
+export_fig(ph0,'Figs/ph0.pdf') 
+export_fig(scatterfh,'Figs/FisherPlot.pdf')
+export_fig(BOLDResfh,'Figs/BOLDRes.pdf')
