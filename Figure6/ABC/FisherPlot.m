@@ -49,15 +49,15 @@ TP2col  = Col(4,:); % Purple
 Acol    = Col(5,:); % Green
 
 %==========================================================================
-SubID = 135932;
-Wnodes = [37 87];
-Anodes = [7 85];
-Fnodes = [88 23];
+% SubID = 135932;
+% Wnodes = [37 87];
+% Anodes = [7 85];
+% Fnodes = [88 23];
 
-% SubID = 118528;
-% Wnodes = [94 37];
-% Anodes = [25 13];
-% Fnodes = [104 103];
+SubID = 118528;
+Wnodes = [94 37];
+Anodes = [25 13];
+Fnodes = [104 103];
 
 load(['/Users/sorooshafyouni/Home/BCF/BCFAnal/FC/100HCPTimeSeries/Yeo/HCP_FPP_' num2str(SubID) '_OnlyMTS.mat'],'mts')
 %==========================================================================
@@ -93,9 +93,9 @@ Z_cv_Naive = -z(CP_naive./2);
 Z_ce_Naive = prctile(Z_naive_triu,(1-CE_den_naive)*100);
 %prepare the monster-------------------------------------------------
 disp('Var is estimated...')
-[~,Stat] = xDF(mts,T,'Taper','Shrink','TVOff','verbose');
-Z_ME = Stat.z.rzf; 
-P_ME = Stat.p.f_Pval; 
+[~,Stat] = xDF(mts,T,'truncate','adaptive','TVOff','verbose');
+Z_ME = Stat.z; 
+P_ME = Stat.p; 
 Z_ME         = real(Z_ME);
 Z_ME_triu    = Z_ME(Idx);
 P_ME_triu    = P_ME(Idx);
@@ -321,7 +321,7 @@ xlim([0 100])
 
 set(gcf,'Color','w');
 
-export_fig(fisherplots,['Figs/FisherPlotsOfHCPSub_' num2str(SubID) '_Amended.pdf'])
+%export_fig(fisherplots,['Figs/FisherPlotsOfHCPSub_' num2str(SubID) '_Amended.pdf'])
 %export_fig(fh,['Figs/AutoCrossCrorr_Fnodes_' num2str(SubID) '.pdf'])
 
 disp('----')

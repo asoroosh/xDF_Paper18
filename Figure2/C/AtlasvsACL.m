@@ -50,11 +50,11 @@ for Site=SiteList
                 if strcmp(Atlas{1},'MMP')
                     scatter(ROI_sz.^(1/2),mean(ACL,2),'MarkerFaceColor',HCP_AtlasCol(a_cnt,:),'MarkerEdgeColor',HCP_AtlasCol(a_cnt,:));
                     ylabel('Auto-correlation Length ($\tau$)','interpreter','latex','fontsize',12)
-                    xlabel('$\sqrt[2]{ROI sizes}~~(vertex)$','interpreter','latex','fontsize',12)
+                    xlabel('$\sqrt[2]{ROI size}~~(vertex)$','interpreter','latex','fontsize',12)
                 else
                     scatter(ROI_sz.^(1/3),mean(ACL,2),'MarkerFaceColor',HCP_AtlasCol(a_cnt,:),'MarkerEdgeColor',HCP_AtlasCol(a_cnt,:));
                     ylabel('Auto-correlation Length ($\tau$)','interpreter','latex','fontsize',12)
-                    xlabel('$\sqrt[3]{ROI sizes}~~(voxel)$','interpreter','latex','fontsize',12)
+                    xlabel('$\sqrt[3]{ROI size}~~(voxel)$','interpreter','latex','fontsize',12)
                 end
                 lsline
                 %plot(0:20,0:20,'r-.')
