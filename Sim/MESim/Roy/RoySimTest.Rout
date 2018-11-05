@@ -1,0 +1,140 @@
+
+R version 3.3.2 (2016-10-31) -- "Sincere Pumpkin Patch"
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> #load necessary libraries
+> library(RcppArmadillo)
+> library(Rcpp)
+> library(R.matlab)
+R.matlab v3.6.1 (2016-10-19) successfully loaded. See ?R.matlab for help.
+
+Attaching package: ‘R.matlab’
+
+The following objects are masked from ‘package:base’:
+
+    getOption, isOpen
+
+> #library(MTS)
+> #library(Matrix)
+> #library(MASS)
+> #library(matrixcalc)
+> #library(statmod)
+> #library(R.matlab)
+> 
+> itr     = 1; 
+> 
+> r_cnt   = 1;
+> t_cnt   = 2;
+> 
+> TList 	= c(100,200,600,1200,1500,2000);
+> RhoList = c(0,0.2,0.5,0.7,0.9); 
+> 
+> T       = TList[t_cnt];
+> rho 	= RhoList[r_cnt]; 
+> 
+> print(paste('For T: ',as.character(T),'  RHO: ',as.character(rho),'  ON ITR:', as.character(itr),sep=''))
+[1] "For T: 200  RHO: 0  ON ITR:1"
+>  
+> ACn     = 6
+> ACnN    = ACn*(ACn-1)/2+ACn #Total number of available AC structures
+> 
+> print('Libs are on!')
+[1] "Libs are on!"
+> 
+> #bring in Rcpp functions
+> sourceCpp('bin/LongitInclude.cpp')
+> 
+> print('RoysEstimator is ON, ready for take off!')
+[1] "RoysEstimator is ON, ready for take off!"
+> 
+> Path2Storage = '/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/'
+> 
+> RoyVar = matrix(0, ACn, ACn)
+> Idx = which(upper.tri(matrix(1, ACn, ACn), diag = 1))
+> 
+> for (AC_cnt in 1:ACnN){
++   print(paste('ACStructure: ',as.character(AC_cnt),sep=''))
++   
++   WhereFrom = paste(Path2Storage,'R_tsSim_t', as.character(t_cnt) ,'_r', as.character(r_cnt) ,'/ts_AC', as.character(AC_cnt),'_',as.character(T),'_r',as.character(rho),'_', as.character(itr) ,'.txt' ,sep = '')
++   print(WhereFrom)
++ 
++ 	#Read the time series
++   ts = t(as.matrix(read.csv(WhereFrom,sep = ',',header = FALSE)))
++   
++ 	#Do the Roy variance estimator on them 
++   RoyFunc = Roy(ts,lag = 20,bw = 5,SigmaType = 'Diagonal') #BW was copied from Mark's paper, number of lags copied from his code -- couldn't find anything about it in the paper --
++   RoyVar[Idx[AC_cnt]]  = RoyFunc[[3]]
++ }
+[1] "ACStructure: 1"
+[1] "/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/R_tsSim_t2_r1/ts_AC1_200_r0_1.txt"
+[1] "ACStructure: 2"
+[1] "/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/R_tsSim_t2_r1/ts_AC2_200_r0_1.txt"
+[1] "ACStructure: 3"
+[1] "/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/R_tsSim_t2_r1/ts_AC3_200_r0_1.txt"
+[1] "ACStructure: 4"
+[1] "/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/R_tsSim_t2_r1/ts_AC4_200_r0_1.txt"
+[1] "ACStructure: 5"
+[1] "/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/R_tsSim_t2_r1/ts_AC5_200_r0_1.txt"
+[1] "ACStructure: 6"
+[1] "/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/R_tsSim_t2_r1/ts_AC6_200_r0_1.txt"
+[1] "ACStructure: 7"
+[1] "/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/R_tsSim_t2_r1/ts_AC7_200_r0_1.txt"
+[1] "ACStructure: 8"
+[1] "/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/R_tsSim_t2_r1/ts_AC8_200_r0_1.txt"
+[1] "ACStructure: 9"
+[1] "/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/R_tsSim_t2_r1/ts_AC9_200_r0_1.txt"
+[1] "ACStructure: 10"
+[1] "/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/R_tsSim_t2_r1/ts_AC10_200_r0_1.txt"
+[1] "ACStructure: 11"
+[1] "/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/R_tsSim_t2_r1/ts_AC11_200_r0_1.txt"
+[1] "ACStructure: 12"
+[1] "/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/R_tsSim_t2_r1/ts_AC12_200_r0_1.txt"
+[1] "ACStructure: 13"
+[1] "/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/R_tsSim_t2_r1/ts_AC13_200_r0_1.txt"
+[1] "ACStructure: 14"
+[1] "/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/R_tsSim_t2_r1/ts_AC14_200_r0_1.txt"
+[1] "ACStructure: 15"
+[1] "/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/R_tsSim_t2_r1/ts_AC15_200_r0_1.txt"
+[1] "ACStructure: 16"
+[1] "/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/R_tsSim_t2_r1/ts_AC16_200_r0_1.txt"
+[1] "ACStructure: 17"
+[1] "/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/R_tsSim_t2_r1/ts_AC17_200_r0_1.txt"
+[1] "ACStructure: 18"
+[1] "/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/R_tsSim_t2_r1/ts_AC18_200_r0_1.txt"
+[1] "ACStructure: 19"
+[1] "/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/R_tsSim_t2_r1/ts_AC19_200_r0_1.txt"
+[1] "ACStructure: 20"
+[1] "/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/R_tsSim_t2_r1/ts_AC20_200_r0_1.txt"
+[1] "ACStructure: 21"
+[1] "/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/R_tsSim_t2_r1/ts_AC21_200_r0_1.txt"
+> 
+> #Save them as a matlab variable 
+> WhereOnStorage = paste(Path2Storage,'R_MESim_t', as.character(t_cnt) ,'_r', as.character(r_cnt) ,'/',sep='')
+> 
+> print(WhereOnStorage)
+[1] "/storage/essicd/data/HCP/Soroosh/ACAnal/MESim/R_MESim_t2_r1/"
+> 
+> Where2Save = paste(WhereOnStorage,'MESim_t',as.character(T),'_r',as.character(rho),'_',as.character(itr),'_Roy_TVOff.mat' ,sep = '');
+> writeMat(RoyVar = RoyVar, Where2Save)
+> 
+> 
+> proc.time()
+   user  system elapsed 
+ 13.461   1.711  20.127 
