@@ -1,18 +1,11 @@
-
-%Just to generate some white correlated time series and discuss how
-%the existing methods might fail udner the null to do statistial
-%aliasing. 
-%
-%SA, Oxford, 2018 
-
-close all
 clear
 
 addpath(genpath('~/Home/GitClone/xDF'))
 
-nRlz = 1500; 
+nRlz = 5000; 
+
 rholist = [0 0.2 0.4 0.6 0.8];
-T = 4000; 
+T = 1200; 
 
 for rcnt = 1:numel(rholist)
     rho = rholist(rcnt);
@@ -66,9 +59,9 @@ plot(TV,'Color','r','marker','x','linewidth',1.3)
 
 ylabel('$\bf{V}(\rho_{XY})$','Interpreter','latex','fontsize',14)
 xlabel('True Correlation Coefficient','fontsize',12)
-legend({'Emprical Variance','Stabilised Emprical Variance','Theoritical Variance $N^{-1}(1-\rho_{XY}^2)^2$'},'fontsize',14,'location','southwest','Interpreter','latex')
+legend({'Emprical Variance','Stabilised Emprical Variance','Theoritical Variance $N^{-1}(1-\rho_{XY}^2)^2$'},'fontsize',14,'location','northwest','Interpreter','latex')
 set(fh0,'Color','w');
-ylim([0 0.6e-3])
+ylim([0 1.8e-3])
 export_fig(fh0,'VARIANCE_Theoritical&Fisher.pdf')
 
 fh1 = figure; 
@@ -82,9 +75,9 @@ fh1.Children.XTickLabels = {'0','0.2','0.4','0.6','0.8'};
 
 ylabel('$\bf{V}(\rho_{XY})$','Interpreter','latex','fontsize',14)
 xlabel('True Correlation Coefficient','fontsize',12)
-legend({'Emprical Variance','Stabilised Emprical Variance','Theoritical Variance $N^{-1}(1-\rho_{XY}^2)^2$','BH','BH - Truncated','Q47','Q47 - Fixed Truncation (1/5)'},'fontsize',14,'location','southwest','Interpreter','latex')
+legend({'Emprical Variance','Stabilised Emprical Variance','Theoritical Variance $N^{-1}(1-\rho_{XY}^2)^2$','BH','BH - Truncated','Q47','Q47 - Fixed Truncation (1/5)'},'fontsize',14,'location','northwest','Interpreter','latex')
 set(fh1,'Color','w');
-ylim([0 0.6e-3])
+ylim([0 1.8e-3])
 export_fig(fh1,'VARIANCE_Theoritical&Fisher&Else.pdf')
 
 fh2 = figure; 
@@ -98,9 +91,9 @@ fh2.Children.XTickLabels = {'0','0.2','0.4','0.6','0.8'};
 
 ylabel('$\bf{V}(\rho_{XY})$','Interpreter','latex','fontsize',14)
 xlabel('True Correlation Coefficient','fontsize',12)
-legend({'Emprical Variance','Stabilised Emprical Variance','Theoritical Variance $N^{-1}(1-\rho_{XY}^2)^2$','BH','BH - Truncated','Q47','Q47 - Fixed Truncation (1/5)','xDF - Adaptive Truncation'},'fontsize',14,'location','southwest','Interpreter','latex')
+legend({'Emprical Variance','Stabilised Emprical Variance','Theoritical Variance $N^{-1}(1-\rho_{XY}^2)^2$','BH','BH - Truncated','Q47','Q47 - Fixed Truncation (1/5)','xDF - Adaptive Truncation'},'fontsize',14,'location','northwest','Interpreter','latex')
 set(fh2,'Color','w');
-ylim([0 0.6e-3])
+ylim([0 1.8e-3])
 export_fig(fh2,'VARIANCE_Theoritical&Fisher&Else&xDF.pdf')
 
 %%%%%----------------- Z-scores
