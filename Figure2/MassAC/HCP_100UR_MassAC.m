@@ -1,7 +1,7 @@
 clear
 
 addpath(genpath('/home/wmrnaq/bin/xDF/'))
-addpath(genpath('/home/wmrnaq/bin/HetBiv/'))
+addpath(genpath('/home/wmrnaq/bin/DVARS/'))
 
 DirID = 'LR';
 
