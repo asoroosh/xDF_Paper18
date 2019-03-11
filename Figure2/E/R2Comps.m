@@ -1,3 +1,21 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Reproduces the Figure 2.E:
+% Using two-sided ANOVA, shows the variance explained by inter-subject or
+% within-subjects (i.e. inter-nodes) variablity of the Autocorrelation
+% Index. 
+% 
+%%% REQUIREMENTS:
+% 1) Data: HCP 100 Unrelated package:
+%          https://db.humanconnectome.org
+%          We have removed subject 101107 due to severe head movement. 
+%          See Afyouni & Nichols 2018, Neuroimage for further information
+% 2) Code: You should have calculated the ACIs (or CorrLeng matrices
+%          using .m '. See line 55 and 57 where we use them)
+% 3) Code: xDF package, available via: https://github.com/asoroosh/xDF/
+% 
+% Soroosh Afyouni, University of Oxford, 2019, 
+% srafyouni@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 clear
 

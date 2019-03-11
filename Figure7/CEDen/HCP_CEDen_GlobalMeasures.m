@@ -1,3 +1,17 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Figure 7:
+% Plots changes on the global measures of proportionally thresholded 
+% (Cost-efficient) networks due to xDF, BH and Naive corrections on Z-scores. 
+%
+% REQUIREMENTS:
+% Data: Graph measures estimated for HCP 100 unrelated package
+% 
+% Code: 
+%
+% Soroosh Afyouni, University of Oxford, 2019, 
+% srafyouni@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 clear 
 %_____________________________________________________
@@ -32,6 +46,7 @@ U={PwrU;YeoU;GordonU};
 cnt_g=1; spc=1;
 fh = figure('position',[50,500,700,260]);
 hold on; box on;    
+
 cnt_v=1;
 for TarVar = VarList
     cnt_a=1;

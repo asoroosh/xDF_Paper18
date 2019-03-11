@@ -1,3 +1,17 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Figure 7:
+% Plots changes on the global measures of proportionally thresholded 
+% (Cost-efficient) networks due to xDF vs. Naive corrections on Z-scores. 
+%
+% REQUIREMENTS:
+% Data: Graph measures estimated for HCP 100 unrelated package
+% 
+% Code: 
+%
+% Soroosh Afyouni, University of Oxford, 2019, 
+% srafyouni@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 clear 
 %_____________________________________________________
 load('/Users/sorooshafyouni/Home/BCF/BCFAnal/FCAnal/S/HCP_100Unrel_SubList.mat')

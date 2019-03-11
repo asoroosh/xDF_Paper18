@@ -1,5 +1,19 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Reproduces the Figure 4:
+% plots % bias of standard errors for 15 different autocorrelation
+% structures across 0,0.2,0.4.0.6,0.9 dependent levels. 
+% 
+%%% REQUIREMENTS:
+% 1) You should use https://github.com/asoroosh/xDF/Sims function to
+% generate independent/dependent time series of arbitrary autocorrelation 
+% structure.
+% 3) Code: xDF package, available via: https://github.com/asoroosh/xDF/
+% 
+% Soroosh Afyouni, University of Oxford, 2019, 
+% srafyouni@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 clear
-%close all
 
 %---------ANNON FUNCs---------------
 %i.e. negative bias means UNDER estimated

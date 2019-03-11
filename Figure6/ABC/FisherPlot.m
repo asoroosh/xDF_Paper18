@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % FisherPlot.m
 %
-% Generates Figure X. 
+% Generates Figure 6. 
 % This script compares the differences in FC strength after autocorrelation
 % corrections. 
 % 

@@ -1,6 +1,18 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Reproduces Figure 1: Inter-subject correlation between two HCP subjects
+%
+%%% REQUIREMENTS:
+% 1) Data: HCP ICA-fixed volumes subject 135932 & 118528, parcellated with Yeo atlas
+% 2) Code: xDF package, available via: https://github.com/asoroosh/xDF/
+% 
+% Soroosh Afyouni, University of Oxford, 2019, 
+% srafyouni@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 clear
 
-addpath(genpath('/Users/sorooshafyouni/Home/GitClone/HetBiv'))
+addpath(genpath('/Users/sorooshafyouni/Home/GitClone/xDF'))
 
 fs=12;
 
@@ -114,10 +126,11 @@ tpr_idx = find(pfish<alp);
 tnr_idx = sum(abs(znaive)<p2z & abs(zMEfish)<p2z)./114;
 
 fpr1_pidx = 85; 
-fpr2_pidx = 7;
-
-tpr1_pidx = 66; % 87
 tpr2_pidx = 37;
+
+fpr2_pidx = 7;
+tpr1_pidx = 66; % 87
+
 
 r([fpr1_pidx,fpr2_pidx,tpr1_pidx,tpr2_pidx ]), 
 disp('--')

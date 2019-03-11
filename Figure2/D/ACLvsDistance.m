@@ -1,3 +1,21 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Reproduces the Figure 2.D:
+% Illustrates the association between location and the autocorrelation 
+% index.  
+% 
+%%% REQUIREMENTS:
+% 1) Data: HCP 100 Unrelated package:
+%          https://db.humanconnectome.org
+%          We have removed subject 101107 due to severe head movement. 
+%          See Afyouni & Nichols 2018, Neuroimage for further information
+% 2) Code: You should have already calculated the ACIs (or CorrLeng matrices
+%          using .m '. See line 55 and 57 where we use them)
+% 3) Code: xDF package, available via: https://github.com/asoroosh/xDF/
+% 
+% Soroosh Afyouni, University of Oxford, 2019, 
+% srafyouni@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 clear
 
 load(['/Volumes/Extra/HCP_100UR_FC/Power/FPP/HCP_FPP_100307_ROIsTS.mat'],'ROI')

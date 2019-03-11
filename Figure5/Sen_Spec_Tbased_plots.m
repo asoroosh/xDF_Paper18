@@ -1,21 +1,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Reproduces the Figure 5:
-% plots the sensitivity, specificity and accuray of non-null simulated
-% correlation matrices. 
 % 
-%%% REQUIREMENTS:
-% 1) You should use https://github.com/asoroosh/xDF/Sims function to
-% generate independent/dependent time series of arbitrary autocorrelation 
-% structure.
-% 3) Code: xDF package, available via: https://github.com/asoroosh/xDF/
-% 
+%
+%
+%
+%
 % Soroosh Afyouni, University of Oxford, 2019, 
 % srafyouni@gmail.com
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 clear
 
-addpath(genpath('/Users/sorooshafyouni/Home/GitClone/HetBiv'))
+addpath(genpath('/Users/sorooshafyouni/Home/GitClone/xDF'))
 
 fs = 12;
 lw = 1.5;
@@ -26,28 +21,30 @@ SubID = 118528;
 Np = 114;
 CG = Np*(Np-1)./2;
 
-nRlz=2000;
+nRlz = 2000;
 
 Col=get(groot,'defaultAxesColorOrder');
 
-TVFlag = 'TVOff';
+TVFlag = 'TVOn';
 
-AlphaS = [0.2 0.5 0.7 1];
+%AlphaS = [0.2 0.5 0.7 1];
+AlphaS = ones(1,7);
 
 EstsLables       = {'ME','MEs1','MEt1','MEt2','MEc4','CR','CH','AR1','AR1MC','Fox','Naive'};
 EstsLables_names = {'xDF','xDF','xDF','xDF','xDF','BH','Q47','B35','AR1MCPS','G-Q47','Naive'};
-OnlyThisMethedos = [1 6:11];
-EstsLables = EstsLables(OnlyThisMethedos);
+OnlyThisMethedos = [5 6:11];
+EstsLables       = EstsLables(OnlyThisMethedos);
 EstsLables_names = EstsLables_names(OnlyThisMethedos);
 
 for t_cnt = 1:numel(T_list)
     Tp = T_list(t_cnt);
     disp(['T: ' num2str(Tp)])
-    for i=1:nRlz
+    for i = 1:nRlz
         if ~mod(i,100); disp(num2str(i)); end; 
-            WhereFrom = ['R_' TVFlag '_8-9/Sen_Spec_t' num2str(T_list(t_cnt)) '_' num2str(SubID) '_' num2str(i) '_' TVFlag '_r9.5-8.5_JustZs.mat'];
-            %WhereFrom = ['R_' TVFlag '_2-9/Sen_Spec_t' num2str(T_list(t_cnt)) '_' num2str(SubID) '_' num2str(i) '_' TVFlag '_r9-2_JustZs.mat'];
-            %WhereFrom = ['R_' TVFlag '_9-2/Sen_Spec_t' num2str(T_list(t_cnt)) '_' num2str(SubID) '_' num2str(i) '_' TVFlag '_r9-2_JustZs.mat'];
+            %WhereFrom = ['/Users/sorooshafyouni/Home/BCF/BCFAnal/Sims/MonsterEquation/FPR/R_' TVFlag '_8-9/Sen_Spec_t' num2str(T_list(t_cnt)) '_' num2str(SubID) '_' num2str(i) '_' TVFlag '_r9.5-8.5_JustZs.mat'];
+            %WhereFrom = ['/Users/sorooshafyouni/Home/BCF/BCFAnal/Sims/MonsterEquation/FPR/R_' TVFlag '_8-9/Sen_Spec_t' num2str(T_list(t_cnt)) '_' num2str(SubID) '_' num2str(i) '_' TVFlag '_r9.5-8.5_JustZs.mat'];
+            %WhereFrom = ['/Users/sorooshafyouni/Home/BCF/BCFAnal/Sims/MonsterEquation/FPR/R_' TVFlag '_2-9/Sen_Spec_t' num2str(T_list(t_cnt)) '_' num2str(SubID) '_' num2str(i) '_' TVFlag '_r9-2_JustZs.mat'];
+            WhereFrom = ['/Users/sorooshafyouni/Home/BCF/BCFAnal/Sims/MonsterEquation/FPR/R_' TVFlag '_9-2/Sen_Spec_t' num2str(T_list(t_cnt)) '_' num2str(SubID) '_' num2str(i) '_' TVFlag '_r9-2_JustZs.mat'];
             if ~exist(WhereFrom,'file')
                     disp(['Missing Realisation:' num2str(i)])
                     continue;
@@ -86,9 +83,9 @@ for t_cnt = 1:numel(T_list)
     end
 end
 
-mSpc = mean(Spc,3).*100;
-mSen = mean(Sen,3).*100;
-mACC = mean(Acc,3).*100;
+mSpc = (mean(Spc,3).*100)';
+mSen = (mean(Sen,3).*100)';
+mACC = (mean(Acc,3).*100)';
 
 sSpc = std(Spc,[],3).*100;
 sSen = std(Sen,[],3).*100;
@@ -109,10 +106,10 @@ for k1 = 1:size(mSpc,2)
     ctr(k1,:) = ctr_tmp;
     ydt(k1,:) = ydt_tmp;
     
-    bh0(k1).FaceColor = Col(1,:);
+    bh0(k1).FaceColor = Col(k1,:);
     bh0(k1).FaceAlpha = AlphaS(k1);
         
-    for m_cnt = 1:numel(OnlyThisMethedos)
+    for m_cnt = 1:numel(T_list)
         txth = text(ctr_tmp(m_cnt),ydt_tmp(m_cnt)+5,num2str(round(ydt_tmp(m_cnt),2)),'fontsize',10);
         set(txth,'rotation',90)
     end
@@ -124,7 +121,8 @@ hold on
 %errorbar(ctr', ydt', sSpc,'.r')
 ylim([10 150])
 
-sph0.XTickLabel = EstsLables_names;
+%sph0.XTickLabel = EstsLables_names;
+sph0.XTickLabel = {'','','',''};
 sph0.XTickLabelRotation = 45;
 %legend({'T=100','T=200','T=600','T=1200'},'location','southeast')
 %-----------------------------
@@ -136,10 +134,10 @@ for k1 = 1:size(mSen,2)
     ctr_tmp = bsxfun(@plus, bh1(1).XData, [bh1(k1).XOffset]');
     ydt_tmp = bh1(k1).YData;
     
-        bh1(k1).FaceColor = Col(2,:);
+        bh1(k1).FaceColor = Col(k1,:);
         bh1(k1).FaceAlpha = AlphaS(k1);
         
-    for m_cnt = 1:numel(OnlyThisMethedos)
+    for m_cnt = 1:numel(T_list)
         txth = text(ctr_tmp(m_cnt),ydt_tmp(m_cnt)+5,num2str(round(ydt_tmp(m_cnt),2)),'fontsize',10);
         set(txth,'rotation',90)
     end
@@ -154,7 +152,8 @@ hold on
 ylabel('Sensitivity','fontsize',fs,'Interpreter','latex')
 ylim([0 150])
 
-sph1.XTickLabel = EstsLables_names;
+%sph1.XTickLabel = EstsLables_names;
+sph1.XTickLabel = {'','','',''};
 sph1.XTickLabelRotation = 45;
 %legend({'T=100','T=200','T=600','T=1200'},'location','southeast')
 %-----------------------------
@@ -167,11 +166,11 @@ for k1 = 1:size(mACC,2) %this is around sample size
     ydt_tmp = bh2(k1).YData;
     
     %for ii = 1:4; 
-        bh2(k1).FaceColor = Col(3,:);
+        bh2(k1).FaceColor = Col(k1,:);
         bh2(k1).FaceAlpha = AlphaS(k1);
     %end;
         
-    for m_cnt = 1:numel(OnlyThisMethedos) %this is around methods + Sample Sizes
+    for m_cnt = 1:numel(T_list) %this is around methods + Sample Sizes
         txth = text(ctr_tmp(m_cnt),ydt_tmp(m_cnt)+5,num2str(round(ydt_tmp(m_cnt),2)),'fontsize',10);
         set(txth,'rotation',90)
     end
@@ -185,9 +184,12 @@ hold on
 %errorbar(ctr', ydt', sACC,'.r')
 ylabel('Accuracy','fontsize',fs,'Interpreter','latex')
 ylim([10 150])
-sph2.XTickLabel = EstsLables_names;
+%sph2.XTickLabel = EstsLables_names;
+sph2.XTickLabel = {'','','',''};
 sph2.XTickLabelRotation = 45;
 set(fh,'color','w')
 %legend({'T=100','T=200','T=600','T=1200'},'location','southeast')
 
-export_fig(fh,'SenSpc.pdf')
+legend(EstsLables_names)
+
+%export_fig(fh,'SenSpc.pdf')

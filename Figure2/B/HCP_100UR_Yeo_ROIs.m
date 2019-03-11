@@ -1,7 +1,22 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Reproduces the Figure 2.B:
+% Calculates the Autocorrelation Index of voxels and ROIs. 
+%
+%%% REQUIREMENTS:
+% 1) Data: HCP 100 Unrelated package:
+%          https://db.humanconnectome.org
+%          We have removed subject 101107 due to severe head movement. 
+%          See Afyouni & Nichols 2018, Neuroimage for further information
+%
+% 2) Code: xDF package, available via: https://github.com/asoroosh/xDF/
+% 
+% Soroosh Afyouni, University of Oxford, 2019, 
+% srafyouni@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 clear
 
-addpath(genpath('/Users/sorooshafyouni/Home/GitClone/DVARS'))
-addpath(genpath('/Users/sorooshafyouni/Home/GitClone/HetBiv'))
+addpath(genpath('/Users/sorooshafyouni/Home/GitClone/xDF'))
 
 fs = 12;
 

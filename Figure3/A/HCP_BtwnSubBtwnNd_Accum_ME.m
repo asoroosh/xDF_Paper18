@@ -1,3 +1,19 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Reproduces the Figure 3.A:
+% Calculates FPR and Kolmogrov-Smirnov results for the inter-subject
+% scrambling. 
+% 
+%%% REQUIREMENTS:
+% 1) Data: Inter-subject scrambling results of the HCP -- See ISC folder
+% for more information about how to generate this results. 
+% 2) Code: You should have already calculated the ACIs (or CorrLeng matrices
+%          using .m '. See line 55 and 57 where we use them)
+% 3) Code: xDF package, available via: https://github.com/asoroosh/xDF/
+% 
+% Soroosh Afyouni, University of Oxford, 2019, 
+% srafyouni@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 clear
 
 SiteList  = {'HCP'};

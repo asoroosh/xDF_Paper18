@@ -1,3 +1,18 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Reproduces the Figure 3.B:
+% plot the Kolmogrov Smirnoff and False Positive Rate of the simulated
+% correlation matrices. 
+% 
+%%% REQUIREMENTS:
+% 1) Data: You should perform an inter-subject scrambling where the time
+% series of one subject is correlation with time series of another
+% subject. 
+% 3) Code: xDF package, available via: https://github.com/asoroosh/xDF/
+% 
+% Soroosh Afyouni, University of Oxford, 2019, 
+% srafyouni@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 clear
 
 nn=114; 

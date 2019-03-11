@@ -1,3 +1,16 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Reproduces the Figure 3.C:
+% plots the False Positive Rates of Monte-Carlo simulations under the null.
+% 
+%%% REQUIREMENTS:
+% 1) You should use https://github.com/asoroosh/xDF/Sims function to
+% generate independent time series of arbitrary autocorrelation structure.
+% 3) Code: xDF package, available via: https://github.com/asoroosh/xDF/
+% 
+% Soroosh Afyouni, University of Oxford, 2019, 
+% srafyouni@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 clear
 %close all
 

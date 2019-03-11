@@ -1,3 +1,20 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Reproduces the Figure 2.C:
+% Illustrates the association between ACI and the size of ROIs. 
+%
+%%% REQUIREMENTS:
+% 1) Data: HCP 100 Unrelated package:
+%          https://db.humanconnectome.org
+%          We have removed subject 101107 due to severe head movement. 
+%          See Afyouni & Nichols 2018, Neuroimage for further information
+% 2) Code: You should have already calculated the ACIs (or CorrLeng matrices
+%          using .m '. See line 55 and 57 where we use them)
+% 3) Code: xDF package, available via: https://github.com/asoroosh/xDF/
+% 
+% Soroosh Afyouni, University of Oxford, 2019, 
+% srafyouni@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 clear
 
 SiteList={'HCP'};
@@ -49,11 +66,11 @@ for Site=SiteList
                 hold on; box on; grid on;
                 if strcmp(Atlas{1},'MMP')
                     scatter(ROI_sz.^(1/2),mean(ACL,2),'MarkerFaceColor',HCP_AtlasCol(a_cnt,:),'MarkerEdgeColor',HCP_AtlasCol(a_cnt,:));
-                    ylabel('Auto-correlation Length ($\tau$)','interpreter','latex','fontsize',12)
+                    ylabel('Auto-correlation Index ($\tau$)','interpreter','latex','fontsize',12)
                     xlabel('$\sqrt[2]{ROI size}~~(vertex)$','interpreter','latex','fontsize',12)
                 else
                     scatter(ROI_sz.^(1/3),mean(ACL,2),'MarkerFaceColor',HCP_AtlasCol(a_cnt,:),'MarkerEdgeColor',HCP_AtlasCol(a_cnt,:));
-                    ylabel('Auto-correlation Length ($\tau$)','interpreter','latex','fontsize',12)
+                    ylabel('Auto-correlation Index ($\tau$)','interpreter','latex','fontsize',12)
                     xlabel('$\sqrt[3]{ROI size}~~(voxel)$','interpreter','latex','fontsize',12)
                 end
                 lsline
