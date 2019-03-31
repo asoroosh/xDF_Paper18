@@ -1,1 +1,13 @@
-# xDF_Paper18
+# Code
+
+Analysis presented in this paper have been done in MATLAB 2015b and R 3.1.0.  Graph theoretical analysis were done using Brain Connectivity Toolbox (accessed:  15/1/2017) (Rubinov and Sporns, 2010). Variance of Pearson’s correlation, Z-scores and p-values of such correlation matrices can be estimated via xDF.m available  in https://github.com/asoroosh/xDF. The  script  is  an  standalone  function  and  is executable using Statistics and Machine Learning Toolbox in MATLAB 2016 or later.  The repository also contains six other variance estimators discussed in this work. The autocorrelation (AC_fft.m) and cross-correlation (xC_fft.m) functions are estimated using Wiener–Khinchin theorem which involves discrete Fourier transformation of time series.  We also used an algorithm proposed by Higham (1988) to find the nearest positive semi-definite covariance matrices for simulations described in Section S3. Scripts  and  instructions  to  reproduce  all  the  figures  and  results,  are  also  available  via http://www.github.com/asoroosh/xDF_Paper18. For details regarding the reproducibility of the figures see section S6
+of the supplementary materials.
+# Data
+Data were provided by the Human Connectome Project, WU-Minn Consortium (Principal Investigators: David Van Essen and Kamil Ugurbil; 1U54MH091657) funded by the 16 NIH Institutes and Centers that support the NIH Blueprint for Neuroscience Research; and by the McDonnell Center for Systems Neuroscience
+at Washington University. Data is publicly available upon registration on https://db.humanconnectome.org.
+
+## HCP 100 Unrelated Subjects;
+We use 100 unrelated subjects, suggested by the HCP website. The list of the subjects are:
+100307, 100408, 101107, 101309, 101915, 103111, 103414, 103818, 105014, 105115, 106016, 108828, 110411, 111312, 111716, 113619, 113922, 114419, 115320, 116524, 117122, 118528, 118730, 118932, 120111, 122317, 122620, 123117, 123925, 124422, 125525, 126325, 127630, 127933, 128127, 128632, 129028, 130013, 130316, 131217, 131722, 133019, 133928, 135225, 135932, 136833, 138534, 139637, 140925, 144832, 146432, 147737, 148335, 148840, 149337, 149539, 149741, 151223, 151526, 151627, 153025, 154734, 156637, 159340, 160123, 161731, 162733, 163129, 176542, 178950, 188347, 189450, 190031, 192540, 196750, 198451, 199655, 201111, 208226, 211417, 211720, 212318, 214423, 221319, 239944, 245333, 280739, 298051, 366446, 397760, 414229, 499566, 654754, 672756, 751348, 756055, 792564, 856766, 857263, 899885
+
+We, following Afyouni & Nichols 2018, remove HCP subject 101107 due to missing substantial parts of the frontal-lobe due to head movement.
