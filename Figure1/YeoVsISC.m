@@ -95,10 +95,10 @@ for i=1:114
     [~,Stat]=xDF([ts(:,i),AdjCUR]',numel(AdjCUR),'truncate','adaptive','TVOn');
     
     %zstat(i) = Stat.z.rz(1,2);
-    zMEfish(i) = Stat.z.rzf(1,2);
+    zMEfish(i) = Stat.z(1,2);
     
     %pstat(i) = Stat.p.r_Pval(1,2);
-    pfish(i) = Stat.p.f_Pval(1,2);    
+    pfish(i) = Stat.p(1,2);    
 
     %--AR1
     [~,~,~,bcf_ar1] = Bartlett46_fft([ts(:,i),AdjCUR]',numel(AdjCUR));
@@ -303,18 +303,20 @@ ylabel('xDF Adjusted Z-scores','FontSize',fs,'interpreter','latex')
 %On the y-axis 
 lh_Nucorp =  line([p2z p2z],[-xxlim xxlim],'linewidth',lw,'linestyle',':');
              line(-[p2z p2z],[-xxlim xxlim],'linewidth',lw,'linestyle',':');
-lh_Ncorp  =  line(-[p2z_crtd p2z_crtd],[-xxlim xxlim],'linewidth',lw);
-             line([p2z_crtd p2z_crtd], [-xxlim xxlim] ,'linewidth',lw);
+% lh_Ncorp  =  line(-[p2z_crtd p2z_crtd],[-xxlim xxlim],'linewidth',lw);
+%              line([p2z_crtd p2z_crtd], [-xxlim xxlim] ,'linewidth',lw);
 lh_Xuncorp = line([-xxlim xxlim],[p2z p2z],'color','r','linewidth',lw,'linestyle',':');
              line([-xxlim xxlim],-[p2z p2z],'color','r','linewidth',lw,'linestyle',':');
-lh_Xcorp   = line([-xxlim xxlim],-[4 4],'color','r','linewidth',lw);
-             line([-xxlim xxlim],[4 4],'color','r','linewidth',lw);
+% lh_Xcorp   = line([-xxlim xxlim],-[4 4],'color','r','linewidth',lw);
+%              line([-xxlim xxlim],[4 4],'color','r','linewidth',lw);
 
 reflh = refline(1,0);
 reflh.Color = 'k';
 reflh.LineStyle = '-.';             
              
-legend([lh_Nucorp lh_Ncorp lh_Xuncorp lh_Xcorp reflh],{'Uncorrected CV(Naive)','FDR CV(Naive)','Uncorrected CV(xDF)','FDR CV(xDF)','Ref. Line'},'fontsize',fs,'location','southeast')
+%legend([lh_Nucorp lh_Ncorp lh_Xuncorp lh_Xcorp reflh],{'Uncorrected CV(Naive)','FDR CV(Naive)','Uncorrected CV(xDF)','FDR CV(xDF)','Ref. Line'},'fontsize',fs,'location','southeast')
+
+legend([lh_Nucorp lh_Xuncorp reflh],{'Uncorrected CV(Naive)','Uncorrected CV(xDF)','Ref. Line'},'fontsize',fs,'location','southeast')
 
 ylim([-4.5 4.5])
 xlim([-4.5 7])
