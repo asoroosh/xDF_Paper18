@@ -1,6 +1,13 @@
 
 clear;
 
+%%%%%%%%%%%%%%%%%%%%%%%%
+% This script put the ACI values on the Atlases used in the paper. 
+% You need the ACI previousely calculated: e.g.
+% 'R/HCP100UR/' a{1} '_' g{1} '_FPP_CorrLeng_ROIWise.mat'
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
 Atlas={'ICA200','Power','Yeo','Gordon'};
 GSR={'GSR'};
 
