@@ -2,11 +2,11 @@
 clear;
 
 Atlas={'ICA200','Power','Yeo','Gordon'};
-GSR={'GSR','NoGSR'};
+GSR={'GSR'};
 
-%load('/Users/sorooshafyouni/Home/HCP_Scripts/Scripts/Netmats/BCFAnal/HCP_CorrLength_Atlas.mat')
-msk_rt='/Users/sorooshafyouni/Home/HCP_Scripts/Scripts/Atlas/';
-
+% msk_rt='/Users/sorooshafyouni/Home/HCP_Scripts/Scripts/Atlas/';
+% msk_rt has to point into the directory that contains all the Atlases used
+% in the paper.
 
 for a=Atlas
     for g=GSR
@@ -24,11 +24,9 @@ for a=Atlas
         elseif strcmp(a{1},'Yeo')
             niiAt=load_untouch_nii([msk_rt 'Yeo2011_17Networks_FSL_MNI152_2mm.nii.gz']);
         elseif strcmp(a{1},'Gordon')
-            niiAt=load_untouch_nii([msk_rt 'Parcels_MNI_222.nii']);
-        elseif strcmp(a{1},'CC200')
-            niiAt=load_untouch_nii([msk_rt 'aal2.nii.gz']);   
-        elseif strcmp(a{1},'ICA200')
-            niiAt=load_untouch_nii(['/Users/sorooshafyouni/Desktop/HCP/PTN/HCP_PTN1200/groupICA/groupICA_3T_HCP1200_MSMAll_d200.ica/ICA200_thr_z_25.nii.gz']);   
+            niiAt=load_untouch_nii([msk_rt 'Parcels_MNI_222.nii']);  
+        %elseif strcmp(a{1},'ICA200')
+        %    niiAt=load_untouch_nii(['/Users/sorooshafyouni/Desktop/HCP/PTN/HCP_PTN1200/groupICA/groupICA_3T_HCP1200_MSMAll_d200.ica/ICA200_thr_z_25.nii.gz']);   
         end
 
         mimg=niiAt.img;
